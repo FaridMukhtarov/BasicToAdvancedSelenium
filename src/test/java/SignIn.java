@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
 import java.time.Duration;
 
 public class SignIn {
@@ -85,6 +87,13 @@ public class SignIn {
         String expectedMsg = "You are successfully logged in.";
         System.out.println(actualMsg.equals(expectedMsg) ? "Test Passed:" : "Test Failed:");
 
+        WebElement endName = driver.findElement(By.cssSelector(".login-container h2"));
+        Assert.assertEquals(endName.getText(), "Hello Farid,", "Message is not equal");
+
+        WebElement logoutBtn = driver.findElement(By.cssSelector(".logout-btn"));
+        logoutBtn.click();
+
+        Thread.sleep(3000);
         driver.quit();
 
 
