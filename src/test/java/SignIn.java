@@ -70,13 +70,17 @@ public class SignIn {
         resetLogin.click();
 
         WebElement infoMessage = driver.findElement(By.cssSelector(".infoMsg"));
-        String newPassword = infoMessage.getText().substring(31,49);
+        // Please use temporary password 'rahulshettyacademy' to Login.
+        String[] cutPassword = infoMessage.getText().split("'");
+        String passwordNew = cutPassword[1].split("'")[0];
+        // System.out.println("Password: " + passwordNew);
+
 
         WebElement goToLoginPage = driver.findElement(By.cssSelector(".go-to-login-btn"));
         goToLoginPage.click();
 
         userName.sendKeys("Farid");
-        password.sendKeys(newPassword);
+        password.sendKeys(passwordNew);
 
         Thread.sleep(1000);
         signInButton.click();
@@ -95,7 +99,5 @@ public class SignIn {
 
         Thread.sleep(3000);
         driver.quit();
-
-
     }
 }
